@@ -4,7 +4,9 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	push_swap
 
-SRC	=
+SRCS	=		main.c\
+			ft_split.c\
+			utils.c
 
 # SRC_BONUS	=
 
@@ -19,7 +21,7 @@ all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 		$(MAKE) -C ft_printf
-		$(CC) $(CFLAGS) $(OBJS) ft_printf/libftprintf.a -o $(NAME)
+		$(CC) -g $(CFLAGS) $(OBJS) ft_printf/libftprintf.a -o $(NAME)
 
 # bonus : $(OBJ_BONUS)
 # 		$(CC) $(CFLAGS) $(OBJ_BONUS)

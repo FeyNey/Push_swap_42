@@ -11,11 +11,15 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <signal.h>
 
 int main(int argc, char **argv)
 {
-	if (argv == 1)
-		exit(EXIT_FAILURE)
-	write()
+	char	**tab;
+
+	ft_checkargs(argc, argv[1]);
+	if (argc == 2)
+		tab = ft_split(argv[1], ' ');
+	else
+		ft_checkargs2(argv);
+//	ft_push_swap(tab);
 }

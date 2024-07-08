@@ -16,4 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+char	**ft_split(char const *s, char c);
+void	ft_checkargs(int n, char *argv);
+void	ft_checkargs2(char** argv);
+void	ft_errors(void);
+
+
 #endif
