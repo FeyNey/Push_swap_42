@@ -16,6 +16,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+typedef struct s_list {
+
+	int				content;
+	struct s_list	*next;
+	struct s_list	*before;
+
+} t_list;
+
 char	**ft_split(char const *s, char c);
 void	ft_checkargs(int n, char *argv);
 void	ft_checkargs2(char** argv);
