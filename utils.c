@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:03:07 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/08 22:56:29 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/16 18:27:10 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_checkargs2(char** argv)
 		while (argv[y][i])
 		{
 			if ((argv[y][i] >= 0 && argv[y][i] <= 6) ||
-				(argv[y][i] >= 14 && argv[y][i] <= 31) ||
+				(argv[y][i] >= 14 && argv[y][i] <= 32) ||
 				(argv[y][i] >= 33 && argv[y][i] <= 42) ||
 				(argv[y][i] >= 46 && argv[y][i] <= 47) ||
 				(argv[y][i] >= 58 && argv[y][i] <= 127) ||
@@ -60,10 +60,18 @@ void	ft_checkargs(int n, char *argv)
 		}
 }
 // check les doublons atoi
-// check les int max
 
 void	ft_errors(void)
 {
 	write(1, "Error\n", 7);
+	exit(EXIT_FAILURE);
+}
+
+void	end_prog(void)
+{
+	//tout ce qui a ete malloc doit etre free
+	// if (element malloc) -> vrai --> il doit etre free sinon
+	// la fonction passe a l'element suivant
+	// pas forcement utilse, a voir
 	exit(EXIT_FAILURE);
 }

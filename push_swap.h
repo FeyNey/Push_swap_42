@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <unistd.h>
+# include <stdio.h> // pas autorise printf test
 # include <stdlib.h>
 
 typedef struct s_list {
@@ -24,10 +25,9 @@ typedef struct s_list {
 
 } t_list;
 
-char	**ft_split(char const *s, char c);
+char	**ft_split(char *s, char c);
 void	ft_checkargs(int n, char *argv);
 void	ft_checkargs2(char** argv);
 void	ft_errors(void);
-
 
 #endif

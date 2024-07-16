@@ -17,7 +17,7 @@ OBJS	=	$(SRCS:.c=.o)
 all	:	$(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) -g $(CFLAGS) -c $< -o $@
 
 $(NAME)	:	$(OBJS)
 		$(MAKE) -C ft_printf

@@ -6,13 +6,13 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:44:35 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/08 22:04:19 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/16 16:02:09 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "push_swap.h"
 
-static int	count_words(char *s, char c)
+int	count_words(char *s, char c)
 {
 	int	i;
 	int	words;
@@ -34,7 +34,7 @@ static int	count_words(char *s, char c)
 	return (words);
 }
 
-static void	write_words(char *tab, char*s, char c)
+void	write_words(char *tab, char*s, char c)
 {
 	int	i;
 
@@ -47,7 +47,21 @@ static void	write_words(char *tab, char*s, char c)
 	tab[i] = '\0';
 }
 
-static void	tab_split(char **tab, char *s, char c, int lastw)
+
+void	freesplit(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	exit(EXIT_FAILURE);
+}
+
+void	tab_split(char **tab, char *s, char c, int lastw)
 {
 	int	i;
 	int	j;
@@ -62,9 +76,11 @@ static void	tab_split(char **tab, char *s, char c, int lastw)
 		else
 		{
 			j = 0;
-			while (s[i + j] != c && s[i + j] != '\0' )
+			while (s[i + j] != c && s[i + j] != '\0')
 				j++;
 			tab[word] = malloc(sizeof(char) * (j + 1));
+			if (!tab)
+				freesplit(tab);
 			write_words(tab[word], s + i, c);
 			i = i + j;
 			word++;
@@ -72,16 +88,15 @@ static void	tab_split(char **tab, char *s, char c, int lastw)
 	}
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
-	char	**tab;
+	char **tab;
 	int		words;
-
-	words = count_words((char *)s, c);
+	words = count_words(s, c);
 	tab = (char **)malloc(sizeof(char *) * (words + 1));
-	if (tab == 0)
-		return (0);
-	tab_split(tab, (char *)s, c, words);
+	if (tab == NULL)
+		exit(EXIT_FAILURE);
+	tab_split(tab, s, c, words);
 	tab[words] = 0;
 	return (tab);
 }
