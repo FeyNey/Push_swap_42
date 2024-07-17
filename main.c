@@ -85,14 +85,14 @@ char	**checkarg(int argc, char **argv)
 
 int main(int argc, char **argv)
 {
-	int	i;
+	// int	i;
 	char	**list;
 	// t_list *a;
 	// t_list *b;
 
 	// a = NULL;
 	// b = NULL;
-	i = 0;
+	// i = 0;
 	list = checkarg(argc, argv);
 	// check_doublon(argv); *************************
 	create_stack(list);
