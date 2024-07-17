@@ -29,5 +29,13 @@ char	**ft_split(char *s, char c);
 void	ft_checkargs(int n, char *argv);
 void	ft_checkargs2(char** argv);
 void	ft_errors(void);
+t_list	*ft_lstnew(int content);
+void	ft_lstadd_end(t_list **head, t_list *node);
+void	ft_lstadd_start(t_list **head, t_list *node);
+void	free_stack(t_list *head);
+void	print_stack(t_list *head);
+int	stack_lenght(t_list *head);
+void	check_doublon(t_list **head);
+int	checkarg(int argc, char **argv);
 
 #endif

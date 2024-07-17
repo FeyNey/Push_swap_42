@@ -6,7 +6,9 @@ NAME	=	push_swap
 
 SRCS	=		main.c\
 			ft_split.c\
-			utils.c
+			utils.c\
+			print_list.c\
+			list_creation.c
 
 # SRC_BONUS	=
 

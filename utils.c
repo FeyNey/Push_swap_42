@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:03:07 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/16 18:27:10 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/16 18:54:26 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_checkargs(int n, char *argv)
 
 void	ft_errors(void)
 {
-	write(1, "Error\n", 7);
+	write(1, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
 

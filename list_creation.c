@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 21:55:58 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/16 12:34:09 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/17 14:44:21 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ void	ft_lstadd_end(t_list **head, t_list *node)
 	if (*head == NULL)
 	{
 		*head = node;
+		node->next = node;
+		node->before = node;
 	}
 	else
 	{
-		tail = (*head)->before;
-		tail->next = node;
 		node->next = *head;
-		node->before = tail;
+		tail = (*head)->before;
 		(*head)->before = node;
+		node->before = tail;
+		tail->next = node;
 	}
 }
 
@@ -50,6 +52,8 @@ void	ft_lstadd_start(t_list **head, t_list *node)
 	if (*head == NULL)
 	{
 		*head = node;
+		node->next = node;
+		node->before = node;
 	}
 	else
 	{
@@ -58,7 +62,7 @@ void	ft_lstadd_start(t_list **head, t_list *node)
 		node->next = *head;
 		node->before = tail;
 		(*head)->before = node;
-		*head = node; // ? head = &node;
+		*head = node;
 	}
 }
 
@@ -75,15 +79,8 @@ void	free_stack(t_list *head)
 	{
 		liberation = head;
 		head = head->next;
-		free(liberation); // delone ?
+		free(liberation);
 	}
 	free(head);
 }
-
-//void	delone(t_list *node)?
-
-
-// comment je recup mon debut,
-// je peux le stocker au debut dans une fonction
-// mais comment je le change dc
 
