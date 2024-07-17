@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:44:35 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/17 16:33:45 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/17 18:01:45 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	freesplit(char **tab)
 		free(tab[i]);
 		i++;
 	}
-	exit(EXIT_FAILURE);
+	ft_errors();
 }
 
 void	tab_split(char **tab, char *s, char c, int lastw)

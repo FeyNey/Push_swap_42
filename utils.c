@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:03:07 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/16 18:54:26 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/17 18:38:09 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void	ft_checkargs2(char** argv)
 				(argv[y][i] >= 33 && argv[y][i] <= 42) ||
 				(argv[y][i] >= 46 && argv[y][i] <= 47) ||
 				(argv[y][i] >= 58 && argv[y][i] <= 127) ||
+				argv[y][i] == 44 ||
 				((argv[y][i] == '-' || argv[y][i] == '+') &&
 				(argv[y][i + 1] <= 47 || argv[y][i + 1] >= 58)) ||
-				argv[y][i] == 44)
+				((argv[y][i] == '-' || argv[y][i] == '+') &&
+				(argv[y][i - 1] >= 47 && argv[y][i - 1] <= 58)))
 							ft_errors();
 			i++;
 		}
@@ -54,7 +56,9 @@ void	ft_checkargs(int n, char *argv)
 				(argv[i] >= 46 && argv[i] <= 47) ||
 				(argv[i] >= 58 && argv[i] <= 127) || argv[i] == 44 ||
 				((argv[i] == '-' || argv[i] == '+') &&
-				(argv[i + 1] <= 47 || argv[i + 1] >= 58)))
+				(argv[i + 1] <= 47 || argv[i + 1] >= 58)) ||
+				((argv[i] == '-' || argv[i] == '+') &&
+				(argv[i - 1] >= 47 && argv[i - 1] <= 58)))
 							ft_errors();
 			i++;
 		}
@@ -67,11 +71,11 @@ void	ft_errors(void)
 	exit(EXIT_FAILURE);
 }
 
-void	end_prog(void)
-{
-	//tout ce qui a ete malloc doit etre free
-	// if (element malloc) -> vrai --> il doit etre free sinon
-	// la fonction passe a l'element suivant
-	// pas forcement utilse, a voir
-	exit(EXIT_FAILURE);
-}
+// void	end_prog(void)
+// {
+// 	//tout ce qui a ete malloc doit etre free
+// 	// if (element malloc) -> vrai --> il doit etre free sinon
+// 	// la fonction passe a l'element suivant
+// 	// pas forcement utilse, a voir
+// 	exit(EXIT_FAILURE);
+// }

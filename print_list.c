@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:31:48 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/17 17:07:17 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/17 20:00:06 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,32 @@ int	stack_lenght(t_list *head)
 	return (i);
 }
 
+// void	check_doublon(t_list **head)
+// {
+// 	t_list *temp;
+// 	int	i;
+// 	int	len;
+
+// 	if ((*head) == NULL)
+// 		return;
+// 	i = 0;
+// 	temp = (*head);
+// 	temp = temp->next;
+// 	len = stack_lenght((*head));
+// 	while ((*head)->content != temp->content)
+// 	{
+// 		i++;
+// 		temp = temp->next;
+// 	}
+// 	i++;
+// 	if ((*head)->content == temp->content && i != len)
+// 		ft_errors();
+// }
+
 void	check_doublon(t_list **head)
 {
 	t_list *temp;
+	t_list *word;
 	int	i;
 	int	len;
 
@@ -60,13 +83,25 @@ void	check_doublon(t_list **head)
 	i = 0;
 	temp = (*head);
 	temp = temp->next;
+	word = (*head);
 	len = stack_lenght((*head));
-	while ((*head)->content != temp->content)
+	// printf("%d = %d\n", );
+	while (word->content != (*head)->content)
 	{
+		while (word->content != temp->content)
+		{
+			i++;
+			temp = temp->next;
+		}
 		i++;
-		temp = temp->next;
+		if (word->content == temp->content && i != len)
+			ft_errors();
+		i = 0;
+		word = word->next;
+		temp = word->next;
 	}
 	i++;
-	if ((*head)->content == temp->content && i != len)
-		ft_errors();
+	if (word->content == temp->content && i != len)
+			ft_errors();
+	printf("a");
 }

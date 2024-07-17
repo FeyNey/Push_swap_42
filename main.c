@@ -29,14 +29,14 @@ int	ft_atoi(char *str)
 		i++;
 	while (str[i])
 	{
-		res = res*10;
+		res = res * 10;
 		res = res + str[i] - '0';
 		i++;
 	}
 	if (res > intmax || res < -intmax)
 	{
 		write(1, "Error\n", 7);
-		exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);		//traiter le free du split
 	}
 	return (res * sign);
 }
@@ -51,6 +51,7 @@ void	create_stack(char **argv)
 
 	stack = NULL;
 	i = 0;
+
 	while (argv[i])
 	{
 		value = ft_atoi(argv[i]);
@@ -93,6 +94,7 @@ int main(int argc, char **argv)
 	// b = NULL;
 	i = 0;
 	list = checkarg(argc, argv);
+	// check_doublon(argv); *************************
 	create_stack(list);
 
 //	ft_push_swap(tab);
