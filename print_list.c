@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:31:48 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/17 20:00:06 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/17 22:09:35 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	check_doublon(t_list **head)
 	word = (*head);
 	len = stack_lenght((*head));
 	// printf("%d = %d\n", );
-	while (word->content != (*head)->content)
+	while (temp->content != (*head)->content)
 	{
 		while (word->content != temp->content)
 		{
