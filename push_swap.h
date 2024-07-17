@@ -36,6 +36,6 @@ void	free_stack(t_list *head);
 void	print_stack(t_list *head);
 int	stack_lenght(t_list *head);
 void	check_doublon(t_list **head);
-int	checkarg(int argc, char **argv);
+char	**checkarg(int argc, char **argv);
 
 #endif

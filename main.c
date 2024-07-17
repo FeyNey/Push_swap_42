@@ -64,36 +64,36 @@ void	create_stack(char **argv)
 	free_stack(stack);
 }
 
-int	checkarg(int argc, char **argv)
+char	**checkarg(int argc, char **argv)
 {
+	char	**list;
 	ft_checkargs(argc, argv[1]);
 	if (argc == 2)
 	{
-		argv = ft_split(argv[1], ' ');
-		return (1);
+		list = ft_split(argv[1], ' ');
+		return (list);
 	}
 	else
 	{
 		ft_checkargs2(argv);
-		return(2);
+		list = argv;
+		list = &list[1];
+		return(list);
 	}
 }
 
 int main(int argc, char **argv)
 {
 	int	i;
-	int	c;
+	char	**list;
 	// t_list *a;
 	// t_list *b;
 
 	// a = NULL;
 	// b = NULL;
 	i = 0;
-	c = checkarg(argc, argv);	//{
-	argv = &argv[1];			// a tester//}
-	create_stack(argv);
-	//if b == 2
-	//	freemonsplit
+	list = checkarg(argc, argv);
+	create_stack(list);
 
 //	ft_push_swap(tab);
 }

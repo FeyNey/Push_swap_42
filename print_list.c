@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:31:48 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/17 14:43:56 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:07:17 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	print_stack(t_list *head)
 
 //test function
 
-
 int	stack_lenght(t_list *head)
 {
 	int	i;
@@ -52,23 +51,22 @@ int	stack_lenght(t_list *head)
 
 void	check_doublon(t_list **head)
 {
-	t_list	*temp;
-	int	y;
+	t_list *temp;
+	int	i;
 	int	len;
 
-	y = 0;
+	if ((*head) == NULL)
+		return;
+	i = 0;
 	temp = (*head);
-	len = stack_lenght(*head);
 	temp = temp->next;
-	while (y != len)
+	len = stack_lenght((*head));
+	while ((*head)->content != temp->content)
 	{
-		while (head && (*head) != temp)
-		{
-			if ((*head) == temp)
-				ft_errors();
-			temp = temp->next;
-		}
-		(*head) = (*head)->next;
-		y++;
+		i++;
+		temp = temp->next;
 	}
+	i++;
+	if ((*head)->content == temp->content && i != len)
+		ft_errors();
 }

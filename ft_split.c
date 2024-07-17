@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:44:35 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/16 16:02:09 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/17 16:33:45 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	tab_split(char **tab, char *s, char c, int lastw)
 
 char	**ft_split(char *s, char c)
 {
-	char **tab;
+	char	**tab;
 	int		words;
 	words = count_words(s, c);
 	tab = (char **)malloc(sizeof(char *) * (words + 1));
@@ -100,3 +100,17 @@ char	**ft_split(char *s, char c)
 	tab[words] = 0;
 	return (tab);
 }
+
+// int main(void)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	char	*s = "Testons tout ca f f saf fd sdkf ";
+// 	char	**tab = ft_split(s, ' ');
+// 	while (tab[i])
+// 	{
+// 		printf("split : %s\n", tab[i]);
+// 		i++;
+// 	}
+// }
