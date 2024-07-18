@@ -40,7 +40,7 @@ void	check_doublon(t_list **head, int len);
 char	**checkarg(int argc, char **argv, int *b);
 
 //implementation pile / stack
-void	create_stack(char **argv, int *b);
+t_list	*create_stack(char **argv, int *b);
 t_list	*ft_lstnew(int content);
 void	ft_lstadd_end(t_list **head, t_list *node);
 void	ft_lstadd_start(t_list **head, t_list *node);
@@ -50,7 +50,10 @@ int		stack_lenght(t_list *head);
 void	free_or_no(char **argv, int c);
 
 //conversion
-int	ft_atoi(char **str, int *b);
+int	ft_atoi(char *str, int *b);
 
+//algorithme
+int	stack_sorted(t_list *a, int len);
+void	algo_turc(char **list, int *p);
 
 #endif

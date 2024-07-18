@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 19:03:07 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/18 11:47:02 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/18 13:07:57 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_errors(void)
 	exit(EXIT_FAILURE);
 }
 
-int	ft_atoi(char **str, int *b)
+int	ft_atoi(char *str, int *b)
 {
 	int i;
 	int sign;
@@ -82,19 +82,19 @@ int	ft_atoi(char **str, int *b)
 	sign = 1;
 	res = 0;
 	intmax = 2147483647;
-	if ((*str)[0] == '-')
+	if (str[0] == '-')
 		sign = -1;
-	if ((*str)[i] == '-' || (*str)[i] == '+')
+	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while ((*str)[i])
+	while (str[i])
 	{
 		res = res * 10;
-		res = res + (*str)[i] - '0';
+		res = res + str[i] - '0';
 		i++;
 	}
 	if (((res > intmax) && (sign == 1)) ||
 		((res > 2147483648) && (sign == -1)))
-		free_or_no(str, *b);
+		free_or_no(&str, *b);
 	return (res * sign);
 }
 

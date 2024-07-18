@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	create_stack(char **argv, int *b)
+t_list	*create_stack(char **argv, int *b)
 {
 	int	i;
 	int	value;
@@ -23,7 +23,7 @@ void	create_stack(char **argv, int *b)
 	i = 0;
 	while (argv[i])
 	{
-		value = ft_atoi(&argv[i], b);
+		value = ft_atoi(argv[i], b);
 		node = ft_lstnew(value);
 		ft_lstadd_end(&stack, node);
 		i++;
@@ -31,8 +31,7 @@ void	create_stack(char **argv, int *b)
 	print_stack(stack);
 	value = stack_lenght(stack);
 	check_doublon(&stack, value);
-	free_or_no(argv, *b);
-	free_stack(stack);// ***********
+	return(stack);
 }
 
 char	**checkarg(int argc, char **argv, int *b)
@@ -55,19 +54,41 @@ char	**checkarg(int argc, char **argv, int *b)
 	}
 }
 
+void	algo_turc(char **list, int *p)
+{
+	t_list	*a;
+	// t_list	*b;
+	// int		i;
+	int	len;
+
+	// i = 0;
+	// b = NULL;
+	a = create_stack(list, p);
+	len = stack_lenght(a);
+	printf("stack trie : %d", stack_sorted(a, len));
+	// if (!stack_sorted(&a))
+	// {
+	// 	if (stack_lenght == 2)
+	// 		sa(&a);
+	// 	else if (stack_lenght == 3)
+	// 		sort_three(&a);
+	// 	else
+	// 		sort_algorithme(&a);
+	// }
+
+
+
+	free_or_no(list, *p);
+	free_stack(a);
+}
+
 int main(int argc, char **argv)
 {
 	char	**list;
 	int		b;
-	// int		i;
-	// t_list *a;
-	// t_list *c;
 
 	b = 0;
-	// i = 0;
-	// a = NULL;
-	// c = NULL;
 	list = checkarg(argc, argv, &b);
-	create_stack(list, &b);
+	algo_turc(list, &b);
 //	ft_push_swap(tab);
 }
