@@ -28,7 +28,7 @@ t_list	*create_stack(char **argv, int *b)
 		ft_lstadd_end(&stack, node);
 		i++;
 	}
-	print_stack(stack);
+	// print_stack(stack);
 	value = stack_lenght(stack);
 	check_doublon(&stack, value);
 	return(stack);
@@ -59,21 +59,22 @@ void	algo_turc(char **list, int *p)
 	t_list	*a;
 	// t_list	*b;
 	// int		i;
-	int	len;
+	// int	len;
 
 	// i = 0;
 	// b = NULL;
 	a = create_stack(list, p);
-	len = stack_lenght(a);
-	printf("stack trie : %d", stack_sorted(a, len));
-	// if (!stack_sorted(&a))
+	// len = stack_lenght(a);
+	print_stack(a);
+	sa(&a);
+	// if (!stack_sorted(a, len))
 	// {
-	// 	if (stack_lenght == 2)
+	// 	if (len == 2)
 	// 		sa(&a);
-	// 	else if (stack_lenght == 3)
+	// 	else if (len == 3)
 	// 		sort_three(&a);
-	// 	else
-	// 		sort_algorithme(&a);
+	// 	// else
+	// 	// 	sort_algorithme(&a);
 	// }
 
 

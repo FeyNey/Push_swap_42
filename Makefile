@@ -8,7 +8,10 @@ SRCS	=		src/checkargs.c\
 				src/ft_split.c\
 				src/list_creation.c\
 				src/use_list.c\
-				main.c
+				main.c\
+				stack_order.c\
+				instruction.c\
+				# instruction2.c
 
 # SRC_BONUS	=
 

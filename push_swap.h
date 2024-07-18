@@ -55,5 +55,9 @@ int	ft_atoi(char *str, int *b);
 //algorithme
 int	stack_sorted(t_list *a, int len);
 void	algo_turc(char **list, int *p);
+void	sort_three(t_list **a);
+
+//tri
+void	sa(t_list **a);
 
 #endif
