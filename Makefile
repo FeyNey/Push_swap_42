@@ -4,11 +4,11 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	push_swap
 
-SRCS	=		main.c\
-			ft_split.c\
-			utils.c\
-			print_list.c\
-			list_creation.c
+SRCS	=		src/checkargs.c\
+				src/ft_split.c\
+				src/list_creation.c\
+				src/use_list.c\
+				main.c
 
 # SRC_BONUS	=
 
