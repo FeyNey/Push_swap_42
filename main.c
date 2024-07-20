@@ -59,23 +59,23 @@ void	algo_turc(char **list, int *p)
 	t_list	*a;
 	// t_list	*b;
 	// int		i;
-	// int	len;
+	int	len;
 
 	// i = 0;
 	// b = NULL;
 	a = create_stack(list, p);
-	// len = stack_lenght(a);
+	len = stack_lenght(a);
 	print_stack(a);
-	sa(&a);
-	// if (!stack_sorted(a, len))
-	// {
-	// 	if (len == 2)
-	// 		sa(&a);
-	// 	else if (len == 3)
-	// 		sort_three(&a);
-	// 	// else
-	// 	// 	sort_algorithme(&a);
-	// }
+	// swap_a(&a);
+	if (stack_sorted(a, len) == 1)
+	{
+		if (len == 2)
+			swap_a(&a);
+		else if (len == 3)
+			sort_three(&a);
+		// else
+		// 	sort_algorithme(&a);
+	}
 
 
 

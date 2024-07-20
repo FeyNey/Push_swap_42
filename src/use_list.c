@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:31:48 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/18 11:20:16 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/20 14:40:44 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	print_stack(t_list *head)
 {
 	t_list *current;
 
+	printf("///////////////////////\n");
 	if (head == NULL)
 		return;
 	current = head;
@@ -26,6 +27,7 @@ void	print_stack(t_list *head)
 		printf("%d\n", current->content);
 		current = current->next;
 	}
+	printf("///////////////////////\n");
 }
 
 //test function

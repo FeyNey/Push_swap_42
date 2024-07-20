@@ -20,6 +20,7 @@
 typedef struct s_list {
 
 	int				content;
+	int				position;
 	struct s_list	*next;
 	struct s_list	*before;
 
@@ -50,14 +51,26 @@ int		stack_lenght(t_list *head);
 void	free_or_no(char **argv, int c);
 
 //conversion
-int	ft_atoi(char *str, int *b);
+int		ft_atoi(char *str, int *b);
 
 //algorithme
-int	stack_sorted(t_list *a, int len);
+int		stack_sorted(t_list *a, int len);
 void	algo_turc(char **list, int *p);
 void	sort_three(t_list **a);
 
 //tri
-void	sa(t_list **a);
+void	swap_a(t_list **a);
+void	swap_b(t_list **b);
+void	push_a(t_list **a, t_list **b);
+void	push_b(t_list **a, t_list **b);
+void	rotate_a(t_list **a);
+void	rotate_b(t_list **b);
+void	ra_rb(t_list **a, t_list **b);
+void	rotate_b(t_list **b);
+void	rotate_ab(t_list **a, t_list **b);
+void	reverse_rotate_a(t_list **a);
+void	reverse_rotate_b(t_list **b);
+void	reverse_rotate_ab(t_list **a, t_list **b);
+t_list	*find_max(t_list *list);
 
 #endif

@@ -6,20 +6,20 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/18 20:28:05 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/20 15:10:07 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-void	sa(t_list **a)
+void	swap_a(t_list **a)
 {
 	t_list	*temp;
 	int		i;
 
 	if (a == NULL || (*a)->next == (*a))
 		return;
-	temp = (*a)->before;
+	temp = (*a)->next;
 	i = (*a)->content;
 	(*a)->content = temp->content;
 	temp->content = i;
@@ -27,38 +27,72 @@ void	sa(t_list **a)
 	print_stack(*a); //a degager a la fin
 }
 
-void	sb(t_list **b)
+void	swap_b(t_list **b)
 {
 	t_list	*temp;
 	int		i;
 
 	if (b == NULL || (*b)->next == (*b))
 		return;
-	temp = (*b)->before;
+	temp = (*b)->next;
 	i = (*b)->content;
 	(*b)->content = temp->content;
 	temp->content = i;
-	write (1, "sb\n", 3);
+	write(1, "sb\n", 3);
 	print_stack(*b); //a degager a la fin
 }
 
-// void	pb(t_list **a, t_list b)
-// {
-// 	if ()
-// }
+void	push_a(t_list **a, t_list **b)
+{
+	t_list	*tail_a;
+	t_list	*tail_b;
+	t_list	*second_b;
 
-// pa
+	if (!b || !a)
+		return;
+	tail_a = (*a)->before;
+	tail_b = (*b)->before;
+	second_b = (*b)->next;
+	(*a)->before = (*b);
+	(*b)->next = (*a);
+	(*b)->before = tail_a;
+	tail_a->next = (*a);
+	tail_b->next = second_b;
+	second_b->before = tail_b;
+	write(1, "pa\n", 3);
+	print_stack(*a);		//a degager a la fin
+	print_stack(*b);		//a degager a la fin
+}
+// if stack a taille < 2 segfault a gerer
 
-// pb
-// 1ft
-// ra
+void	push_b(t_list **a, t_list **b)
+{
+	t_list	*tail_a;
+	t_list	*tail_b;
+	t_list	*second_a;
 
-// rb
+	if (!a || !b)
+		return;
+	tail_a = (*a)->before;
+	tail_b = (*b)->before;
+	second_a = (*a)->next;
+	(*a)->next = (*b);
+	(*a)->before = tail_b;
+	(*b)->before = (*a);
+	tail_b->next = (*a);
+	second_a->before = tail_a;
+	tail_a->next = second_a;
+	write(1, "pb\n", 3);
+	print_stack(*a);		//a degager a la fin
+	print_stack(*b);		//a degager a la fin
+}
 
-// rr
-// 1ft
-// rra
+// if stack taille < 2 segfault a gerer;
 
-// rrb
-
-// rrr
+void	rotate_a(t_list **a)
+{
+	if (!*a || !(*a)->next)
+		return;
+	(*a) = (*a)->next;
+	write(1, "ra\n", 3);
+}

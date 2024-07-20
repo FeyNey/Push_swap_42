@@ -11,7 +11,7 @@ SRCS	=		src/checkargs.c\
 				main.c\
 				stack_order.c\
 				instruction.c\
-				# instruction2.c
+				instruction2.c
 
 # SRC_BONUS	=
 
