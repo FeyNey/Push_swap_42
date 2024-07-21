@@ -21,6 +21,7 @@ typedef struct s_list {
 
 	int				content;
 	int				position;
+	int				nbr_top_cost;
 	struct s_list	*next;
 	struct s_list	*before;
 
@@ -57,6 +58,9 @@ int		ft_atoi(char *str, int *b);
 int		stack_sorted(t_list *a, int len);
 void	algo_turc(char **list, int *p);
 void	sort_three(t_list **a);
+void	sort_algorithme(t_list **a);
+void	lowest_index(t_list **a, t_list **b);
+void	first_order_a(t_list **a);
 
 //tri
 void	swap_a(t_list **a);
@@ -72,5 +76,7 @@ void	reverse_rotate_a(t_list **a);
 void	reverse_rotate_b(t_list **b);
 void	reverse_rotate_ab(t_list **a, t_list **b);
 t_list	*find_max(t_list *list);
+void	rotate_cost(t_list **a);
+
 
 #endif

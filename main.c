@@ -57,30 +57,26 @@ char	**checkarg(int argc, char **argv, int *b)
 void	algo_turc(char **list, int *p)
 {
 	t_list	*a;
-	// t_list	*b;
-	// int		i;
 	int	len;
 
-	// i = 0;
-	// b = NULL;
 	a = create_stack(list, p);
 	len = stack_lenght(a);
+	printf ("stack before algo\n");
 	print_stack(a);
-	// swap_a(&a);
 	if (stack_sorted(a, len) == 1)
 	{
 		if (len == 2)
 			swap_a(&a);
 		else if (len == 3)
 			sort_three(&a);
-		// else
-		// 	sort_algorithme(&a);
+		else
+		{
+			sort_algorithme(&a);
+		}
 	}
-
-
-
 	free_or_no(list, *p);
 	free_stack(a);
+	printf("freed stacks\n");
 }
 
 int main(int argc, char **argv)

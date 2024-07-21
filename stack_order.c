@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/20 17:10:53 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/21 22:37:07 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,45 +89,17 @@ t_list	*find_max(t_list *list)
 	return (max);
 }
 
-void	give_index(t_list **a)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = stack_lenght(*a);
-	while (i < len)
-	{
-		(*a)->position = i;
-		i++;
-	}
-}
-
-void	first_order_a(t_list **a, t_list **b)
-{
-	int	i;
-
-	i = stack_lenght;
-	if (!(*a) || (*a)->next == (*a))
-		return(0);
-	while (i > 2)
-	{
-		push_b(a, b);
-		i--;
-	}
-	sort_three(a);
-	give_index(a);
-}
-
 void	give_index(t_list **list)
 {
 	int	i;
 	t_list	*temp;
 
 	i = 1;
+	printf("test 1 : \n");
 	temp = (*list)->next;
-	list->position = i;
-	while ((*list)->content != (*temp)->content)
+	(*list)->position = i;
+	printf("test 2 :\n");
+	while ((*list)->content != temp->content)
 	{
 		temp->position = i;
 		temp = temp->next;
@@ -135,42 +107,106 @@ void	give_index(t_list **list)
 	}
 }
 
-void	lowest_biggest_number(t_list **b)
+
+
+void	first_order_a(t_list **a)
 {
-	/*
-		attribuer a la pile b le nombre le plus proche devant lequel ils doivent
-		s'inserer
-	*/
+	int	i;
+	t_list b;
+
+	b = NULL;
+	if (!(*a) || (*a)->next == (*a))
+		return;
+	i = stack_lenght(*a);
+	while (i > 2)
+	{
+		//a refaire initialiser ma pile
+		push_b(a, b);
+		i--;
+	}
+	sort_three(a);
+	give_index(a);
+	give_index(b);
+	printf("%d\n", (*a)->position); //supp
+	printf("%d\n", (*a)->next->position); //supp
+	printf("%d\n", (*a)->next->next->position); //supp
 }
 
-void	lowest_index(t_list **b)
+
+// void	lowest_biggest_number(t_list **b)
+// {
+// 	/*
+// 		attribuer a la pile b le nombre le plus proche devant lequel ils doivent
+// 		s'inserer
+// 	*/
+// }
+
+void	lowest_index(t_list **a, t_list **b)
 {
-	if (!b)
-		return (0)
+	int	i;
+	int	len;
+	int	min_max;
+
+	i = 0;
+	len = stack_lenght(*a);
+	min_max = (*a)->content;
+	while (i < len)
+	{
+		if ((*a)->content > (*b)->content && (*a)->content < min_max)
+			(*b)->position = (*a)->position;
+		i++;
+		(*a) = (*a)->next;
+	}
+	if ((*a)->content < (*b)->content)
+		(*b)->position = 1;
+		// s occuper du min et du max
 /*
 	mettre en index a la pile b le nombre de coup necessaire pour etre bouger
 */
 }
 
-
-void	sort_algorithme(t_list **a, t_list **b)
+void	rotate_cost(t_list **a)
 {
-	if (!(*a) || !(*a)->next)
-		return(0);
-	first_order_a(a, b);
-	give_index(b);
+	int		i;
+	int		len;
+
+	i = 0;
+	len = stack_lenght(*a) / 2;
+	while (i <= len) //verif
+	{
+		(*a)->nbr_top_cost = i;
+		i++;
+	}
+	if (stack_lenght(*a) % 2 == 1)
+		i++;
+	while (i > 0)
+	{
+		(*a)->nbr_top_cost = i;
+		i--;
+	}
+}
+
+void	sort_algorithme(t_list **a)
+{
+	printf("okay");
+	if (!(*a) || (*a)->next == (*a))
+		return;
+	first_order_a(a);
+	printf("a");
 	if (!(*b))
 	{
 		printf("Error B implementation");	//supp apres test
-		exit;								//supp apres test
+		exit(EXIT_FAILURE);								//supp apres test
 	}
-	lowest_index(b);
-
-	while ()
-	{
-
-	}
-
+	rotate_cost(a);
+	rotate_cost(b);
+	lowest_index(a, b); // continuer
 }
+// 	while ()
+// 	{
+
+// 	}
+
+// }
 
 
