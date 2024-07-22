@@ -17,6 +17,16 @@
 # include <stdio.h> // pas autorise printf test
 # include <stdlib.h>
 
+
+/*
+void func (t_list l*ist)
+
+	list->sdsdsds
+	list->sdsdsd
+	list->next = &temp;
+	list = list->next
+*/
+
 typedef struct s_list {
 
 	int				content;
@@ -60,7 +70,7 @@ void	algo_turc(char **list, int *p);
 void	sort_three(t_list **a);
 void	sort_algorithme(t_list **a);
 void	lowest_index(t_list **a, t_list **b);
-void	first_order_a(t_list **a);
+void	first_order_a(t_list **a, t_list **b);
 
 //tri
 void	swap_a(t_list **a);

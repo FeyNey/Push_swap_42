@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/21 22:37:07 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/22 22:57:15 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,16 @@ void	sort_three(t_list **a)
 	if (big_node == *a)
 	{
 		rotate_a(a);
-		print_stack(*a);
 	}
 	else if ((*a)->next == big_node)
 	{
 		reverse_rotate_a(a);
-		print_stack(*a);
 	}
 	if ((*a)->content > (*a)->next->content)
 	{
 		swap_a(a);
-		print_stack(*a);
 	}
+	print_stack(*a);
 }
 
 /*
@@ -92,14 +90,15 @@ t_list	*find_max(t_list *list)
 void	give_index(t_list **list)
 {
 	int	i;
+	int	len;
 	t_list	*temp;
 
 	i = 1;
-	printf("test 1 : \n");
+	len = stack_lenght(*list);
 	temp = (*list)->next;
 	(*list)->position = i;
-	printf("test 2 :\n");
-	while ((*list)->content != temp->content)
+	i++;
+	while (i < len + 1)
 	{
 		temp->position = i;
 		temp = temp->next;
@@ -107,29 +106,22 @@ void	give_index(t_list **list)
 	}
 }
 
-
-
-void	first_order_a(t_list **a)
+void	first_order_a(t_list **a, t_list **b)
 {
 	int	i;
-	t_list b;
 
-	b = NULL;
 	if (!(*a) || (*a)->next == (*a))
 		return;
+	push_b(a, b);
 	i = stack_lenght(*a);
-	while (i > 2)
+	while (i > 3)
 	{
-		//a refaire initialiser ma pile
 		push_b(a, b);
 		i--;
 	}
 	sort_three(a);
 	give_index(a);
 	give_index(b);
-	printf("%d\n", (*a)->position); //supp
-	printf("%d\n", (*a)->next->position); //supp
-	printf("%d\n", (*a)->next->next->position); //supp
 }
 
 
@@ -141,40 +133,112 @@ void	first_order_a(t_list **a)
 // 	*/
 // }
 
+t_list	*find_min(t_list *list)
+{
+	int i;
+	int len;
+	t_list *temp;
+	t_list *min;
+
+	if (!list || list->next == list)
+		return(0);
+	i = 0;
+	min = list;
+	len = stack_lenght(list);
+	temp = list->next;
+	while (i < len)
+	{
+		if (temp->content < min->content)
+			min = temp;
+		temp = temp->next;
+		i++;
+	}
+	printf("min = %d\n", min->content); // a degager
+	return (min);
+}
+
 void	lowest_index(t_list **a, t_list **b)
 {
 	int	i;
-	int	len;
+	int	y;
+	int	len_a;
+	int	len_b;
 	int	min_max;
+	t_list *temp;
+	t_list *temp2;
+	t_list *temp3;
 
+	(void)min_max;
+	temp2 = (*a);
+	temp3 = (*b);
+	printf("\n--------------------------\n\n");
 	i = 0;
-	len = stack_lenght(*a);
-	min_max = (*a)->content;
-	while (i < len)
+	y = 0;
+	len_a = stack_lenght(*a);
+	temp = (*b);
+	len_b = stack_lenght(*b);
+	while (y < len_b) // tant que je parcour ma chaine b
 	{
-		if ((*a)->content > (*b)->content && (*a)->content < min_max)
-			(*b)->position = (*a)->position;
+		i = 0;
+		min_max = 2147483647;
+		while (i < len_a) // tant que je parcours ma chaine a
+		{
+			if ((*a)->content > (*b)->content) //&& (*a)->content < min_max
+			{
+				(*b)->position = (*a)->position;
+				min_max = (*a)->content;
+			}
+			i++;
+			(*a) = (*a)->next;
+		}
+		if ((*b)->content < find_min(*a)->content)
+			(*b)->position = 1;
+		if ((*b)->content > find_max(*a)->content)
+			(*b)->position = 1;
+		temp = temp->next;
+		y++;
+	}
+	i = 0;
+	*a = temp2->before;
+	printf("\n--------------stack a------------\n\n");
+	print_stack(*a);
+	while (i < stack_lenght(*a))
+	{
+		printf("numero a-> %d\n", (*a)->content);
+		printf("index sur a -> %d\n", (*a)->position);
 		i++;
 		(*a) = (*a)->next;
 	}
-	if ((*a)->content < (*b)->content)
-		(*b)->position = 1;
+	*b = temp3;
+	printf("\n--------------stack b------------\n\n");
+	print_stack(*b);
+	printf("\n--------------------------\n\n");
+	i = 0;
+	len_b = stack_lenght(*b);
+	while (i < len_b)
+	{
+		printf("numero b-> %d\n", (*b)->content);
+		printf("index sur b -> %d\n", (*b)->position);
+		i++;
+		(*b) = (*b)->next;
+	}
+}
+
 		// s occuper du min et du max
 /*
 	mettre en index a la pile b le nombre de coup necessaire pour etre bouger
 */
-}
-
-void	rotate_cost(t_list **a)
+void	rotate_cost_a(t_list **a)
 {
 	int		i;
 	int		len;
 
 	i = 0;
 	len = stack_lenght(*a) / 2;
-	while (i <= len) //verif
+	while (i <= len + 1) //verif
 	{
 		(*a)->nbr_top_cost = i;
+		(*a) = (*a)->next;
 		i++;
 	}
 	if (stack_lenght(*a) % 2 == 1)
@@ -182,24 +246,53 @@ void	rotate_cost(t_list **a)
 	while (i > 0)
 	{
 		(*a)->nbr_top_cost = i;
+		(*a) = (*a)->next;
 		i--;
 	}
 }
 
+void	rotate_cost_b(t_list **b)
+{
+	int	i;
+	int	len;
+	t_list	*temp;
+
+	temp = (*b);
+	i = 0;
+	len = stack_lenght(*b) / 2;
+	while (i <= len)
+	{
+		(*b)->nbr_top_cost = i;
+		(*b) = (*b)->next;
+		i++;
+	}
+	i--;
+	if (stack_lenght(*b) % 2 == 0)
+		i--;
+	while (i > 0)
+	{
+		(*b)->nbr_top_cost = i;
+		(*b) = (*b)->next;
+		i--;
+	}
+	i = 0;
+	(*b) = temp;
+	len = len * 2;
+}
+
 void	sort_algorithme(t_list **a)
 {
-	printf("okay");
+	t_list **b;
+	t_list *test;
+
+	test = NULL;
+	b = &test;
 	if (!(*a) || (*a)->next == (*a))
 		return;
-	first_order_a(a);
-	printf("a");
-	if (!(*b))
-	{
-		printf("Error B implementation");	//supp apres test
-		exit(EXIT_FAILURE);								//supp apres test
-	}
-	rotate_cost(a);
-	rotate_cost(b);
+	first_order_a(a, b);
+	printf("objectif\n");
+	rotate_cost_a(a);
+	rotate_cost_b(b);
 	lowest_index(a, b); // continuer
 }
 // 	while ()
@@ -208,5 +301,3 @@ void	sort_algorithme(t_list **a)
 // 	}
 
 // }
-
-

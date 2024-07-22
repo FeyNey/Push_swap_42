@@ -28,7 +28,6 @@ t_list	*create_stack(char **argv, int *b)
 		ft_lstadd_end(&stack, node);
 		i++;
 	}
-	// print_stack(stack);
 	value = stack_lenght(stack);
 	check_doublon(&stack, value);
 	return(stack);
