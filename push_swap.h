@@ -75,7 +75,8 @@ void	first_order_a(t_list **a, t_list **b);
 //tri
 void	swap_a(t_list **a);
 void	swap_b(t_list **b);
-void	push_a(t_list **a, t_list **b);
+int		push_a(t_list **a, t_list **b);
+void	last_stack_element(t_list **a, t_list **b);
 void	push_b(t_list **a, t_list **b);
 void	rotate_a(t_list **a);
 void	rotate_b(t_list **b);

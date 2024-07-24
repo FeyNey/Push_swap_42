@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:44:35 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/18 11:20:06 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/24 21:18:19 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,3 @@ char	**ft_split(char *s, char c)
 	tab[words] = 0;
 	return (tab);
 }
-
-// int main(void)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	char	*s = "Let's test something";
-// 	char	**tab = ft_split(s, ' ');
-// 	while (tab[i])
-// 	{
-// 		printf("split : %s\n", tab[i]);
-// 		i++;
-// 	}
-// }

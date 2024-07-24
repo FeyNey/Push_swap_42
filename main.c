@@ -61,7 +61,7 @@ void	algo_turc(char **list, int *p)
 	a = create_stack(list, p);
 	len = stack_lenght(a);
 	printf ("stack before algo\n");
-	print_stack(a);
+	print_stack(a);						//test
 	if (stack_sorted(a, len) == 1)
 	{
 		if (len == 2)
@@ -69,9 +69,7 @@ void	algo_turc(char **list, int *p)
 		else if (len == 3)
 			sort_three(&a);
 		else
-		{
 			sort_algorithme(&a);
-		}
 	}
 	free_or_no(list, *p);
 	free_stack(a);
