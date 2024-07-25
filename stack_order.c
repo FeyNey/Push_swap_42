@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/25 01:12:11 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/25 16:44:28 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,9 @@ void	rotate_cost_a(t_list **a)
 {
 	int		i;
 	int		len;
+	t_list	*head;
 
+	head = (*a);
 	i = 0;
 	len = stack_lenght(*a) / 2;
 	while (i <= len + 1) //verif
@@ -236,6 +238,7 @@ void	rotate_cost_a(t_list **a)
 		(*a) = (*a)->next;
 		i--;
 	}
+	(*a) = head;
 }
 
 void	rotate_cost_b(t_list **b)
@@ -320,40 +323,46 @@ int	above_median(t_list **pile, t_list *node)
 
 void	on_top_a(t_list **a, t_list *node_min, int len_a)
 {
-	int	i;
-	// t_list	**head;
+	int i;
+	t_list *node_position_in_a;
 
-	i = 0;
-	// head = a;
-	while (i < len_a)
+	i = 1;
+	printf("-------cost rotation : %d-------\n", (*a)->nbr_top_cost); // problem
+	printf("-------node min position : %d---\n", node_min->position); // problem
+	(void)len_a;
+	(void)node_min;
+	node_position_in_a = (*a);
+	while (i != 1)
 	{
-		if ((node_min->position < len_a / 2) && (node_min != (*a)))
+		node_position_in_a = node_position_in_a->next;
+	}
+	if (above_median(a, node_position_in_a) == 0)
+	{
+		while (i != (*a)->nbr_top_cost)
 		{
 			rotate_a(a);
-			node_min = node_min->next;
+			i++;
 		}
-		else if (node_min != (*a))
+	}
+	else
+	{
+		while (i != (*a)->nbr_top_cost)
 		{
 			reverse_rotate_a(a);
-			node_min = node_min->before;
+			i++;
 		}
-		i++;
 	}
 	print_stack(*a);
 }
 
 void	on_top_b(t_list **b, t_list *node_min, int len_b)
 {
-	t_list	*head;
-
 	(void)len_b;
-	head = (*b);
-	if (above_median(b, node_min) == 1)
+	if (above_median(b, node_min) == 0)
 	{
 		while((*b) != node_min)
 		{
 			rotate_b(b);
-			node_min = node_min->next;
 		}
 	}
 	else
@@ -361,10 +370,8 @@ void	on_top_b(t_list **b, t_list *node_min, int len_b)
 		while ((*b) != node_min)
 		{
 			reverse_rotate_b(b);
-			node_min = node_min->before;
 		}
 	}
-	(*b) = head;
 	print_stack(*b);
 }
 
@@ -375,10 +382,10 @@ void	push_right_index(t_list **a, t_list **b, t_list *node_min, t_list *nod)
 
 	len_a = stack_lenght(*a);
 	len_b = stack_lenght(*b);
-	printf("\n\n--------------After algo------------\n\n");
 	on_top_a(a, node_min, len_a);
 	on_top_b(b, nod, len_b);
 	push_a(a, b);
+	print_stack(*a);
 }
 
 void	sort_algorithme(t_list **a)
@@ -396,11 +403,16 @@ void	sort_algorithme(t_list **a)
 	first_order_a(a, b);
 	print_stack(*a);
 	print_stack(*b);
-	rotate_cost_a(a);
-	rotate_cost_b(b);
-	lowest_index(a, b);
-	node_min = moove_cost(a, b, node_min);
-	node_min2 = node_min;
-	printf("ok\n");
-	push_right_index(a, b, node_min, node_min2);
+	while ((*b) != (*a))
+	{
+		rotate_cost_a(a);
+		rotate_cost_b(b);
+		lowest_index(a, b);
+		node_min = moove_cost(a, b, node_min);
+		node_min2 = node_min;
+		push_right_index(a, b, node_min, node_min2);
+	}
+	printf("ended\n");
+	print_stack(*a);
+	print_stack(*b);
 }
