@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/24 18:04:49 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/27 19:01:05 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	last_stack_element(t_list **a, t_list **b)
 	(*a)->before = (*b);
 	tail_a->next = (*b);
 	(*a) = (*a)->before;
+	write(1, "pa\n", 3);
 }
 
 int	push_a(t_list **a, t_list **b)
@@ -129,12 +130,11 @@ void	push_b(t_list **a, t_list **b)
 	}
 }
 
-// if stack taille < 2 segfault a gerer;
-
 void	rotate_a(t_list **a)
 {
 	if (!*a || !(*a)->next)
 		return;
 	(*a) = (*a)->next;
-	write(1, "ra\n", 3);
+	printf(YELLOW "ra\n" RESET);
+	// write(1, "ra\n", 3);
 }

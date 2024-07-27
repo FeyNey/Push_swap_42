@@ -60,7 +60,7 @@ void	algo_turc(char **list, int *p)
 
 	a = create_stack(list, p);
 	len = stack_lenght(a);
-	printf ("stack before algo\n");
+	printf(RED "stack before algo\n" RESET);
 	print_stack(a);						//test
 	if (stack_sorted(a, len) == 1)
 	{

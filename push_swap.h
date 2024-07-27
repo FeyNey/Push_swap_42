@@ -18,14 +18,12 @@
 # include <stdlib.h>
 
 
-/*
-void func (t_list l*ist)
-
-	list->sdsdsds
-	list->sdsdsd
-	list->next = &temp;
-	list = list->next
-*/
+#define RED     "\x1b[31m" // test printf
+#define GREEN   "\x1b[32m"
+#define CYAN    "\x1b[36m"
+#define MAGENTA "\x1b[35m"
+#define YELLOW  "\x1b[33m"
+#define RESET   "\x1b[0m"
 
 typedef struct s_list {
 
