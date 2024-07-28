@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 12:31:48 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/28 18:15:46 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:50:05 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,17 @@ long long int	ft_atoi(char *str)
 		i++;
 	}
 	return (res * sign);
+}
+
+void	last_stack_element(t_list **a, t_list **b)
+{
+	t_list	*tail_a;
+
+	tail_a = (*a)->before;
+	(*b)->before = tail_a;
+	(*b)->next = (*a);
+	(*a)->before = (*b);
+	tail_a->next = (*b);
+	(*a) = (*a)->before;
+	write(1, "pa\n", 3);
 }
