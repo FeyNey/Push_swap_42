@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/27 20:13:04 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/28 14:55:05 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@ int	stack_sorted(t_list *a, int len)
 {
 	t_list *temp;
 	int	i;
+	int y;
 
-	i = 0;
+	y = 1;
 	if (!a)
 		return(1);
 	temp = a->next;
-	while (temp->content != a->content && i != len)
+	while (temp->content != a->content && y != len)
 	{
-		while (temp->content != a->content)
+		i = y;
+		while (temp->content != a->content && i != len)
 		{
-			i = 0;
 			if (a->content > temp->content)
 				return(1);
 			temp = temp->next;
@@ -33,7 +34,7 @@ int	stack_sorted(t_list *a, int len)
 		}
 		a = a->next;
 		temp = a->next;
-		i++;
+		y++;
 	}
 	return(0);
 }
@@ -199,33 +200,34 @@ void	lowest_index(t_list **a, t_list **b)
 		(*b) = (*b)->next;
 		y++;
 	}
-	//test
-	temp = (*a);
-	t_list *temp2 = (*b);
-	printf("\n--------------stack a------------\n\n");
-	print_stack(*a);
-	while (i < stack_lenght(*a))
-	{
-		printf("a content -> %d\n", (*a)->content);
-		printf("a position -> %d\n", (*a)->position);
-		i++;
-		(*a) = (*a)->next;
-	}
-	printf("\n--------------stack b------------\n\n");
-	print_stack(*b);
-	printf("\n--------------------------\n\n");
-	i = 0;
-	len_b = stack_lenght(*b);
-	while (i < len_b)
-	{
-		printf("numero b-> %d\n", (*b)->content);
-		printf("index sur b -> %d\n\n", (*b)->position);
-		i++;
-		(*b) = (*b)->next;
-	}
-	(*a) = temp;
-	(*b) = temp2;
 }
+	//test
+// 	temp = (*a);
+// 	t_list *temp2 = (*b);
+// 	printf("\n--------------stack a------------\n\n");
+// 	print_stack(*a);
+// 	while (i < stack_lenght(*a))
+// 	{
+// 		printf("a content -> %d\n", (*a)->content);
+// 		printf("a position -> %d\n", (*a)->position);
+// 		i++;
+// 		(*a) = (*a)->next;
+// 	}
+// 	printf("\n--------------stack b------------\n\n");
+// 	print_stack(*b);
+// 	printf("\n--------------------------\n\n");
+// 	i = 0;
+// 	len_b = stack_lenght(*b);
+// 	while (i < len_b)
+// 	{
+// 		printf("numero b-> %d\n", (*b)->content);
+// 		printf("index sur b -> %d\n\n", (*b)->position);
+// 		i++;
+// 		(*b) = (*b)->next;
+// 	}
+// 	(*a) = temp;
+// 	(*b) = temp2;
+// }
 
 void	rotate_cost_a(t_list **a)
 {
@@ -326,15 +328,17 @@ t_list	*moove_cost(t_list **a, t_list **b, t_list *node_min) // decalage pointeu
 	i = 0;
 	node_min = (*a);
 	min_cost_moove = 2147483647;
-	print_stack(*b);
+	//test
+	// print_stack(*b);
 	while (i < stack_lenght(*b))
 	{
 		while ((*b)->position != (*a)->position) //optimisation du sens de rota possible
 			(*a) = (*a)->next;
-		printf("||| b content : %d  |||", (*b)->content);
-		printf(" b position : %d |||\n", (*b)->position);
-		printf("||| a content : %d |||", (*a)->content);
-		printf("||| a position : %d |||\n", (*a)->position);
+		//test
+		// printf("||| b content : %d  |||", (*b)->content);
+		// printf(" b position : %d |||\n", (*b)->position);
+		// printf("||| a content : %d |||", (*a)->content);
+		// printf("||| a position : %d |||\n", (*a)->position);
 		if (min_cost_moove > (*a)->nbr_top_cost + (*b)->nbr_top_cost)
 		{
 			min_cost_moove = (*a)->nbr_top_cost + (*b)->nbr_top_cost;
@@ -344,9 +348,10 @@ t_list	*moove_cost(t_list **a, t_list **b, t_list *node_min) // decalage pointeu
 		i++;
 	}
 	(*a) = head;
-	printf ("\n----------------------\n");
-	printf ("node min = %d", node_min->content);
-	printf ("\n----------------------\n");
+	//test
+	// printf ("\n----------------------\n");
+	// printf ("node min = %d", node_min->content);
+	// printf ("\n----------------------\n");
 	return (node_min);
 }
 
@@ -381,9 +386,10 @@ void	on_top_a(t_list **a, t_list *node_min, int len_a)
 
 	i = 1;
 	temp = (*a);
-	printf(MAGENTA " ||  before on_top_a ||\n" RESET);
-	print_stack(*a);
-	printf(MAGENTA " ||  before on_top_a ||\n" RESET);
+	//test
+	// printf(MAGENTA " ||  before on_top_a ||\n" RESET);
+	// print_stack(*a);
+	// printf(MAGENTA " ||  before on_top_a ||\n" RESET);
 
 	(void)len_a;
 
@@ -392,10 +398,11 @@ void	on_top_a(t_list **a, t_list *node_min, int len_a)
 		temp = temp->next;
 	}
 	nbr_rota = temp->nbr_top_cost;
-	printf("-------cost rotation a : %d-------\n", (*a)->nbr_top_cost); // problem
-	printf("-------node min position a : %d---\n", node_min->position); // problem
-	printf("////////////    i : %d    ", i);
-	printf("     nbr rota : %d          ///////\n", nbr_rota);
+	//test
+	// printf("-------cost rotation a : %d-------\n", (*a)->nbr_top_cost); // problem
+	// printf("-------node min position a : %d---\n", node_min->position); // problem
+	// printf("////////////    i : %d    ", i);
+	// printf("     nbr rota : %d          ///////\n", nbr_rota);
 	if (above_median(a, temp) == 0)
 	{
 		while (i != nbr_rota)
@@ -412,15 +419,17 @@ void	on_top_a(t_list **a, t_list *node_min, int len_a)
 			i++;
 		}
 	}
-	printf(MAGENTA " ||  after on_top_a ||\n" RESET);
-	print_stack(*a);
-	printf(MAGENTA " ||  after on_top_a ||\n" RESET);
+	//test
+	// printf(MAGENTA " ||  after on_top_a ||\n" RESET);
+	// print_stack(*a);
+	// printf(MAGENTA " ||  after on_top_a ||\n" RESET);
 }
 
 void	on_top_b(t_list **b, t_list *node_min, int len_b)
 {
-	printf("-------cost rotation b : %d-------\n", (*b)->nbr_top_cost); // problem
-	printf("-------node min position b : %d---\n", node_min->position); // problem
+	// //test
+	// printf("-------cost rotation b : %d-------\n", (*b)->nbr_top_cost); // problem
+	// printf("-------node min position b : %d---\n", node_min->position); // problem
 	// printf(CYAN " ||  before top_b ||\n" RESET);
 	// print_stack(*b);
 	// printf(CYAN " ||  before top_b ||\n" RESET);
@@ -454,7 +463,8 @@ void	push_right_index(t_list **a, t_list **b, t_list *node_min, t_list *nod)
 	on_top_a(a, node_min, len_a);
 	on_top_b(b, nod, len_b);
 	push_a(a, b);
-	print_stack(*a);
+	//test
+	// print_stack(*a);
 }
 
 void	last_rotation(t_list **a)
@@ -494,8 +504,9 @@ void	sort_algorithme(t_list **a)
 	if (!(*a) || (*a)->next == (*a))
 		return;
 	first_order_a(a, b);
-	print_stack(*a);
-	print_stack(*b);
+	//test
+	// print_stack(*a);
+	// print_stack(*b);
 	while ((*b) != (*a))
 	{
 		give_index(a);
@@ -509,18 +520,18 @@ void	sort_algorithme(t_list **a)
 	}
 	last_rotation(a);
 	//test
-	
-	printf(GREEN "---------- end of program -------\n" RESET);
-	printf("---------- stack *a -------\n");
-	print_stack(*a);
+
+	// printf(GREEN "---------- end of program -------\n" RESET);
+	// printf("---------- stack *a -------\n");
+	// print_stack(*a);
 
 
-	if (stack_sorted(*a, stack_lenght(*a)) == 1)
-	{
-		printf(GREEN "\n\n\n          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
-		printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
-		printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
-		printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
-		printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n\n\n\n\n"RESET);
-	}
+	// if (stack_sorted(*a, stack_lenght(*a)) == 1)
+	// {
+	// 	printf(GREEN "\n\n\n          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
+	// 	printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
+	// 	printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
+	// 	printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n");
+	// 	printf(GREEN "          🎆🎆🎆🎆 SUCCES 🎆🎆🎆🎆 \n\n\n\n\n"RESET);
+	// }
 }

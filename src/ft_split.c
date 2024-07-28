@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 23:44:35 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/24 21:18:19 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:04:30 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void	write_words(char *tab, char*s, char c)
 	}
 	tab[i] = '\0';
 }
-
 
 void	freesplit(char **tab)
 {
@@ -93,6 +92,7 @@ char	**ft_split(char *s, char c)
 {
 	char	**tab;
 	int		words;
+
 	words = count_words(s, c);
 	tab = (char **)malloc(sizeof(char *) * (words + 1));
 	if (tab == NULL)

@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/27 19:01:05 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/27 20:34:59 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	swap_a(t_list **a)
 	(*a)->content = temp->content;
 	temp->content = i;
 	write (1, "sa\n", 3);
-	print_stack(*a); //a degager a la fin
 }
 
 void	swap_b(t_list **b)
@@ -39,7 +38,6 @@ void	swap_b(t_list **b)
 	(*b)->content = temp->content;
 	temp->content = i;
 	write(1, "sb\n", 3);
-	print_stack(*b); //a degager a la fin
 }
 
 void	initialised_b(t_list **a, t_list **b)
@@ -135,6 +133,5 @@ void	rotate_a(t_list **a)
 	if (!*a || !(*a)->next)
 		return;
 	(*a) = (*a)->next;
-	printf(YELLOW "ra\n" RESET);
-	// write(1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }

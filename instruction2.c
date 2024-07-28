@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 19:49:36 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/27 19:01:35 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/27 20:43:14 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ void	rotate_ab(t_list **a, t_list **b)
 	write(1, "rr\n", 3);
 }
 
-// rra
 void	reverse_rotate_a(t_list **a)
 {
 	if (!(*a) || !(*a)->next)
 		return ;
 	(*a) = (*a)->before;
-	printf(YELLOW "rra\n" RESET);
-	// write(1, "rra\n", 4);
+	write(1, "rra\n", 4);
 }
 
 void	reverse_rotate_b(t_list **b)

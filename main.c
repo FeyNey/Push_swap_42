@@ -12,10 +12,22 @@
 
 #include "push_swap.h"
 
+int	check_value(long long int value, char **argv, int *b, t_list *stack)
+{
+	if ((value > 2147483647) || (value < -2147483648))
+	{
+		free_or_no(argv, *b);
+		free_stack(stack);
+		ft_errors();
+	}
+	return ((int)value);
+}
+
 t_list	*create_stack(char **argv, int *b)
 {
 	int	i;
-	int	value;
+	long long int	value_check;
+	int value;
 	t_list	*node;
 	t_list	*stack;
 
@@ -23,7 +35,8 @@ t_list	*create_stack(char **argv, int *b)
 	i = 0;
 	while (argv[i])
 	{
-		value = ft_atoi(argv[i], b);
+		value_check = ft_atoi(argv[i]);
+		value = check_value(value_check, &argv[0], b, stack);
 		node = ft_lstnew(value);
 		ft_lstadd_end(&stack, node);
 		i++;
@@ -60,8 +73,10 @@ void	algo_turc(char **list, int *p)
 
 	a = create_stack(list, p);
 	len = stack_lenght(a);
-	printf(RED "stack before algo\n" RESET);
-	print_stack(a);						//test
+	//test
+	// printf(RED "stack before algo\n" RESET);
+	// print_stack(a);
+	//test
 	if (stack_sorted(a, len) == 1)
 	{
 		if (len == 2)
@@ -73,7 +88,8 @@ void	algo_turc(char **list, int *p)
 	}
 	free_or_no(list, *p);
 	free_stack(a);
-	printf("freed stacks\n");
+	//test
+	// printf("freed stacks\n");
 }
 
 int main(int argc, char **argv)

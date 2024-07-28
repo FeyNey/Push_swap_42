@@ -17,7 +17,7 @@
 # include <stdio.h> // pas autorise printf test
 # include <stdlib.h>
 
-
+//test
 #define RED     "\x1b[31m" // test printf
 #define GREEN   "\x1b[32m"
 #define CYAN    "\x1b[36m"
@@ -47,6 +47,7 @@ void	ft_checkargs(int n, char *argv);
 void	ft_checkargs2(char** argv);
 void	ft_errors(void);
 void	check_doublon(t_list **head, int len);
+void	check_doublon_error(t_list **head);
 char	**checkarg(int argc, char **argv, int *b);
 
 //implementation pile / stack
@@ -55,12 +56,13 @@ t_list	*ft_lstnew(int content);
 void	ft_lstadd_end(t_list **head, t_list *node);
 void	ft_lstadd_start(t_list **head, t_list *node);
 void	free_stack(t_list *head);
-void	print_stack(t_list *head);
 int		stack_lenght(t_list *head);
 void	free_or_no(char **argv, int c);
+// void	print_stack(t_list *head);
 
 //conversion
-int		ft_atoi(char *str, int *b);
+long long int	ft_atoi(char *str);
+int	check_value(long long int value, char **argv, int *b, t_list *stack);
 
 //algorithme
 int		stack_sorted(t_list *a, int len);

@@ -6,7 +6,7 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 21:55:58 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/18 11:43:42 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/28 18:05:27 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list	*ft_lstnew(int content)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = (t_list *)malloc(sizeof(t_list));
 	if (node == NULL)
@@ -27,7 +27,7 @@ t_list	*ft_lstnew(int content)
 
 void	ft_lstadd_end(t_list **head, t_list *node)
 {
-	t_list *tail;
+	t_list	*tail;
 
 	if (*head == NULL)
 	{
@@ -68,11 +68,11 @@ void	ft_lstadd_start(t_list **head, t_list *node)
 
 void	free_stack(t_list *head)
 {
-	t_list *current;
-	t_list *liberation;
+	t_list	*current;
+	t_list	*liberation;
 
 	if (head == NULL)
-		return;
+		return ;
 	current = head;
 	head = head->next;
 	while (head != current)
@@ -99,4 +99,3 @@ void	free_or_no(char **argv, int c)
 		free(argv);
 	}
 }
-
