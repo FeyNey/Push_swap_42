@@ -6,38 +6,11 @@
 /*   By: acoste <acoste@student.42perpignan.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 12:47:57 by acoste            #+#    #+#             */
-/*   Updated: 2024/07/28 19:46:18 by acoste           ###   ########.fr       */
+/*   Updated: 2024/07/30 15:16:07 by acoste           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	stack_sorted(t_list *a, int len)
-{
-	t_list	*temp;
-	int		i;
-	int		y;
-
-	y = 1;
-	if (!a)
-		return (1);
-	temp = a->next;
-	while (temp->content != a->content && y != len)
-	{
-		i = y;
-		while (temp->content != a->content && i != len)
-		{
-			if (a->content > temp->content)
-				return (1);
-			temp = temp->next;
-			i++;
-		}
-		a = a->next;
-		temp = a->next;
-		y++;
-	}
-	return (0);
-}
 
 void	sort_three(t_list **a)
 {
@@ -63,58 +36,6 @@ void	sort_three(t_list **a)
 	de choisir la meuilleur option pour swap
 */
 
-t_list	*find_max(t_list *list)
-{
-	int		i;
-	int		len;
-	t_list	*temp;
-	t_list	*max;
-
-	if (!list || list->next == list)
-		return (0);
-	i = 0;
-	max = list;
-	len = stack_lenght(list);
-	temp = list->next;
-	while (i < len)
-	{
-		if (temp->content > max->content)
-			max = temp;
-		temp = temp->next;
-		i++;
-	}
-	return (max);
-}
-
-void	give_index(t_list **list)
-{
-	int		i;
-	int		len;
-	t_list	*temp;
-
-	i = 1;
-	len = stack_lenght(*list);
-	temp = (*list)->next;
-	(*list)->position = i;
-	i++;
-	while (i < len + 1)
-	{
-		temp->position = i;
-		temp = temp->next;
-		i++;
-	}
-}
-// 	// test
-// 	i = 0;
-// 	len = stack_lenght(*list);
-// 	while (i < len)
-// 	{
-// 		i++;
-// 		(*list) = (*list)->next;
-// 	}
-
-// }
-
 void	first_order_a(t_list **a, t_list **b)
 {
 	int	i;
@@ -133,326 +54,6 @@ void	first_order_a(t_list **a, t_list **b)
 	give_index(b);
 }
 
-// void	lowest_biggest_number(t_list **b)
-// {
-// 	/*
-// 		attribuer a la pile b le nombre le plus proche devant lequel ils doivent
-// 		s'inserer
-// 	*/
-// }
-
-t_list	*find_min(t_list *list)
-{
-	int		i;
-	int		len;
-	t_list	*temp;
-	t_list	*min;
-
-	if (!list || list->next == list)
-		return (0);
-	i = 0;
-	min = list;
-	len = stack_lenght(list);
-	temp = list->next;
-	while (i < len)
-	{
-		if (temp->content < min->content)
-			min = temp;
-		temp = temp->next;
-		i++;
-	}
-	return (min);
-}
-
-void	lowest_index(t_list **a, t_list **b)
-{
-	int		i;
-	int		y;
-	int		len_a;
-	int		len_b;
-	int		min_max;
-	t_list	*temp;
-
-	i = 0;
-	y = 0;
-	len_a = stack_lenght(*a);
-	temp = (*b);
-	len_b = stack_lenght(*b);
-	while (y < len_b) // tant que je parcour ma chaine b
-	{
-		i = 0;
-		min_max = find_max(*a)->content + 1;
-		while (i < len_a) // tant que je parcours ma chaine a
-		{
-			if ((*a)->content > (*b)->content && (*a)->content < min_max)
-			{
-				(*b)->position = (*a)->position;
-				min_max = (*a)->content;
-			}
-			i++;
-			(*a) = (*a)->next;
-		}
-		if ((*b)->content < find_min(*a)->content)
-			(*b)->position = find_min(*a)->position;  //index du find max;
-		if ((*b)->content > find_max(*a)->content)
-			(*b)->position = find_min(*a)->position;  // index du find min;
-		temp = temp->next;
-		(*b) = (*b)->next;
-		y++;
-	}
-}
-	//test
-// 	temp = (*a);
-// 	t_list *temp2 = (*b);
-// 	printf("\n--------------stack a------------\n\n");
-// 	print_stack(*a);
-// 	while (i < stack_lenght(*a))
-// 	{
-// 		printf("a content -> %d\n", (*a)->content);
-// 		printf("a position -> %d\n", (*a)->position);
-// 		i++;
-// 		(*a) = (*a)->next;
-// 	}
-// 	printf("\n--------------stack b------------\n\n");
-// 	print_stack(*b);
-// 	printf("\n--------------------------\n\n");
-// 	i = 0;
-// 	len_b = stack_lenght(*b);
-// 	while (i < len_b)
-// 	{
-// 		printf("numero b-> %d\n", (*b)->content);
-// 		printf("index sur b -> %d\n\n", (*b)->position);
-// 		i++;
-// 		(*b) = (*b)->next;
-// 	}
-// 	(*a) = temp;
-// 	(*b) = temp2;
-// }
-
-void	rotate_cost_a(t_list **a)
-{
-	int		i;
-	int		nbr;
-	int		len;
-	t_list	*head;
-
-	nbr = 1;
-	head = (*a);
-	i = 0;
-	len = stack_lenght(*a) / 2;
-	while (i <= len) //verif
-	{
-		(*a)->nbr_top_cost = nbr;
-		(*a) = (*a)->next;
-		i++;
-		nbr++;
-	}
-	i--;
-	nbr--;
-	if (stack_lenght(*a) % 2 == 0)
-	{
-		nbr--;
-		i--;
-	}
-	while (i > 0)
-	{
-		(*a)->nbr_top_cost = nbr;
-		(*a) = (*a)->next;
-		i--;
-		nbr--;
-	}
-	(*a) = head;
-}
-	// // test
-	// i = 0;
-	// len = stack_lenght(*a);
-	// while (i < len)
-	// {
-	// 	printf(MAGENTA " || a pile ||\n" RESET);
-	// 	printf("|||  node content = %d  |||\n", (*a)->content);
-	// 	printf("|||  nbr_top_cost = %d   |||\n", (*a)->nbr_top_cost);
-	// 	(*a) = (*a)->next;
-	// 	i++;
-	// }
-	// (*a) = head;
-
-void	rotate_cost_b(t_list **b)
-{
-	int	i;
-	int	len;
-	t_list	*temp;
-
-	temp = (*b);
-	i = 0;
-	len = stack_lenght(*b) / 2;
-	while (i <= len)
-	{
-		(*b)->nbr_top_cost = i;
-		(*b) = (*b)->next;
-		i++;
-	}
-	i--;
-	if (stack_lenght(*b) % 2 == 0)
-		i--;
-	while (i > 0)
-	{
-		(*b)->nbr_top_cost = i;
-		(*b) = (*b)->next;
-		i--;
-	}
-	(*b) = temp;
-}
-	// i = 0;
-	// len = stack_lenght(*b);
-	// while (i < len)
-	// {
-	// 	printf(CYAN " ||  b pile ||\n" RESET);
-	// 	printf("|||  node content = %d  |||\n", (*b)->content);
-	// 	printf("|||  nbr_top_cost = %d   |||\n", (*b)->nbr_top_cost);
-	// 	i++;
-	// 	(*b) = (*b)->next;
-	// }
-	// (*b) = temp;
-
-t_list	*moove_cost(t_list **a, t_list **b, t_list *node_min)
-{
-	int		i;
-	int		min_cost_moove;
-	t_list	*head;
-
-	head = (*a);
-	i = 0;
-	node_min = (*a);
-	min_cost_moove = 2147483647;
-	while (i < stack_lenght(*b))
-	{
-		while ((*b)->position != (*a)->position)
-			(*a) = (*a)->next;
-		if (min_cost_moove > (*a)->nbr_top_cost + (*b)->nbr_top_cost)
-		{
-			min_cost_moove = (*a)->nbr_top_cost + (*b)->nbr_top_cost;
-			node_min = (*b);
-		}
-		(*b) = (*b)->next;
-		i++;
-	}
-	(*a) = head;
-	return (node_min);
-}
-	//test
-		// printf("||| b content : %d  |||", (*b)->content);
-		// printf(" b position : %d |||\n", (*b)->position);
-		// printf("||| a content : %d |||", (*a)->content);
-		// printf("||| a position : %d |||\n", (*a)->position);
-	//test
-	// printf ("\n----------------------\n");
-	// printf ("node min = %d", node_min->content);
-	// printf ("\n----------------------\n");
-
-int	above_median(t_list **pile, t_list *node)
-{
-	int	i;
-	int	len;
-	t_list	*head;
-
-	head = (*pile);
-	len = stack_lenght(*pile);
-	// if (len % 2 == 1)
-		// len = len + 1;
-	i = 0;
-	while (*pile != node)
-	{
-		*pile = ((*pile)->next);
-		i++;
-	}
-	*pile = head;
-	if (i <= (len / 2))
-		return (0);
-	else
-		return (1);
-}
-
-void	on_top_a(t_list **a, t_list *node_min)
-{
-	int		i;
-	int		nbr_rota;
-	t_list	*temp;
-
-	i = 1;
-	temp = (*a);
-
-	while (temp->position != node_min->position)
-	{
-		temp = temp->next;
-	}
-	nbr_rota = temp->nbr_top_cost;
-	if (above_median(a, temp) == 0)
-	{
-		while (i != nbr_rota)
-		{
-			rotate_a(a);
-			i++;
-		}
-	}
-	else
-	{
-		while (i != nbr_rota)
-		{
-			reverse_rotate_a(a);
-			i++;
-		}
-	}
-}
-
-void	on_top_b(t_list **b, t_list *node_min)
-{
-	if (above_median(b, node_min) == 0)
-	{
-		while((*b) != node_min)
-		{
-			rotate_b(b);
-		}
-	}
-	else
-	{
-		while ((*b) != node_min)
-		{
-			reverse_rotate_b(b);
-		}
-	}
-}
-
-void	push_right_index(t_list **a, t_list **b, t_list *node_min, t_list *nod)
-{
-	on_top_a(a, node_min);
-	on_top_b(b, nod);
-	push_a(a, b);
-}
-
-void	last_rotation(t_list **a)
-{
-	t_list	*min;
-
-	min = find_min(*a);
-	while ((*a) != min)
-	{
-		if (above_median(a, min) == 0)
-		{
-			while((*a) != min)
-			{
-				rotate_a(a);
-			}
-		}
-		else
-		{
-			while((*a) != min)
-			{
-				reverse_rotate_a(a);
-			}
-		}
-	}
-}
-
 void	sort_algorithme(t_list **a)
 {
 	t_list	**b;
@@ -464,26 +65,25 @@ void	sort_algorithme(t_list **a)
 	b = &test;
 	node_min = NULL;
 	if (!(*a) || (*a)->next == (*a))
-		return;
+		return ;
 	first_order_a(a, b);
 	while ((*b) != (*a))
 	{
 		give_index(a);
-		rotate_cost_a(a);
+		rotate_cost_a(a, 0, 1, stack_lenght(*a) / 2);
 		rotate_cost_b(b);
-		lowest_index(a, b);
+		lowest_index(a, b, 0, 0);
 		node_min = moove_cost(a, b, node_min);
 		node_min2 = node_min;
 		push_right_index(a, b, node_min, node_min2);
 	}
 	last_rotation(a);
+	print_stack(*a);
 }
-	//test
-
+	// //test
+	// //test
 	// printf(GREEN "---------- end of program -------\n" RESET);
 	// printf("---------- stack *a -------\n");
-	// print_stack(*a);
-
 
 	// if (stack_sorted(*a, stack_lenght(*a)) == 1)
 	// {

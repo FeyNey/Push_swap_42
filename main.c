@@ -42,7 +42,7 @@ t_list	*create_stack(char **argv, int *b)
 		i++;
 	}
 	value = stack_lenght(stack);
-	check_doublon(&stack, value);
+	check_doublon(&stack, value, argv, b);
 	return (stack);
 }
 
@@ -76,9 +76,15 @@ void	algo_turc(char **list, int *p)
 	if (stack_sorted(a, len) == 1)
 	{
 		if (len == 2)
+		{
 			swap_a(&a);
+			print_stack(a);
+		}
 		else if (len == 3)
+		{
 			sort_three(&a);
+			print_stack(a);
+		}
 		else
 			sort_algorithme(&a);
 	}
@@ -86,12 +92,6 @@ void	algo_turc(char **list, int *p)
 	free_stack(a);
 }
 
-	//test
-	// printf(RED "stack before algo\n" RESET);
-	// print_stack(a);
-	//test
-	//test
-	// printf("freed stacks\n");
 int	main(int argc, char **argv)
 {
 	char	**list;
@@ -101,5 +101,3 @@ int	main(int argc, char **argv)
 	list = checkarg(argc, argv, &b);
 	algo_turc(list, &b);
 }
-
-//	ft_push_swap(tab);

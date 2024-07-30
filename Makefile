@@ -4,42 +4,49 @@ CFLAGS	=	-Wall -Wextra -Werror
 
 NAME	=	push_swap
 
-SRCS	=		src/checkargs.c\
-				src/ft_split.c\
-				src/list_creation.c\
-				src/use_list.c\
-				main.c\
-				stack_order.c\
-				instruction.c\
-				instruction2.c
+NAME_BONUS = checker
 
-# SRC_BONUS	=
+SRCS	=		checkargs.c\
+				ft_split.c\
+				list_creation.c\
+				use_list.c\
+				main.c\
+				instruction_push.c\
+				instruction_swap.c\
+				instruction_rotation.c\
+				instruction_reverse_rotate.c\
+				stack_order.c\
+				rotation.c\
+				stack_attribute.c\
+				calcul.c\
+				calcul2.c\
+
+SRCS_BONUS	=	bonus/checker_arg_bonus.c\
+				bonus/checker_bonus.c\
+				bonus/list_creation_bonus.c\
+				bonus/ft_split_bonus.c
 
 OBJS	=	$(SRCS:.c=.o)
 
-# OBJ_BONUS	=
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all	:	$(NAME)
 
 %.o: %.c
-	$(CC) -g $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME)	:	$(OBJS)
-		$(MAKE) -C ft_printf
-		$(CC) -g $(CFLAGS) $(OBJS) ft_printf/libftprintf.a -o $(NAME)
+		$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
-# bonus : $(OBJ_BONUS)
-# 		$(CC) $(CFLAGS) $(OBJ_BONUS)
+bonus	:	$(OBJS_BONUS)
+		$(CC) $(CFLAGS) $(OBJS_BONUS) -o $(NAME_BONUS)
 
 clean	:
-		$(MAKE) -C ft_printf clean
 		rm -rf $(OBJS)
-# $(OBJ_BONUS)
+		rm -rf $(OBJS_BONUS)
 
 fclean	:	clean
-		$(MAKE) -C ft_printf fclean
 		rm -f $(NAME)
-# $(NAME_BONUS)
 
 re	:	fclean all
 
